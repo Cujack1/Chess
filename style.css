@@ -1,0 +1,24 @@
+.wrapper {
+    width: 900px;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tiles {
+    width: 100px;
+    height: 100px;
+    margin: -5px 5px;
+    padding: 0;
+    background: gold;
+}
+
+/* hover effect on possibleMoves */
+.possibleMoves {
+    background: rgb(185, 165, 50);
+}
+
+.possibleMoves:hover {
+    filter: contrast(100);
+}
