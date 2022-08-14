@@ -562,6 +562,8 @@ const tilesArray = [
 // console.log("Black node list", blackPiecesOnBoard);
 
 // Initialize the Board, populate the piece names
+
+// ==========================| Getting thigns started |==========================
 initializeBoard();
 function initializeBoard() {
   tilesArray.map((tile) => {
@@ -585,23 +587,24 @@ function moveEventListener() {
   }
 }
 
-// Stores the selected tile in a variable to check if it has a piece in it or not.
+// ==========================| Clicking on Pieces & Blank Tiles |==========================
+
+// 1. Find out what's on that tile by storing it's data in a variable 'startingPoint' and checking it against tilesArray[];
+// // a. If a piece is found on that tile, then its callback function is called.
+// // b. and all event listeners are removed from the board (added again later).
 function whichPiece() {
-  // grab the selected tile's className
   let currentTile = this.className;
   let tileClass = "." + currentTile.split(" ")[0];
-  // console.log("whichPiece() tileClass: ", tileClass);
 
-  // 1. finding the tile that was clicked on in the tile array and storing it as an object in the startingPoint variable.
-  // 2. then if there is a piece on this tile, that piece's function is called.
   tilesArray.map((tile) => {
-    if (tileClass === tile.selector) {
+    if (tile.selector === tileClass) {
       if (tile.piece) {
         startingPoint = tile;
-        console.log("starting point (click 1): ", startingPoint);
+
         for (box of tileListener) {
           box.removeEventListener("click", whichPiece);
         }
+
         tile.piece();
         listenForMove();
       }
@@ -609,112 +612,124 @@ function whichPiece() {
   });
 }
 
-// // // // // // // // //
+// 2. De-select a piece
+// // a. Event listeners added to de-select a piece if they click anywhere except a tile that they can move to.
 function listenForMove() {
-  console.log("tilesArray, possible?: ", tilesArray);
-  //   tilesArray.map((tile) => {
-  //     if (tile.possible === false) {
-  //       document
-  //         .querySelector(tile.selector)
-  //         .addEventListener("click", resetBoard);
-  //     }
-  //   });
+  tilesArray.map((tile) => {
+    if (tile.possible === false) {
+      document
+        .querySelector(tile.selector)
+        .addEventListener("click", resetBoard);
+    }
+  });
 }
 
-// Chess Piece Functions
-
-function bishop() {
-  console.log("Bishop Clicked");
-}
-function rook() {
-  // Function for Rooks
-  // If the array is false, then run the map function.
-  // Places all possible moves for the Rook into an array, possibleMoves[]...
-  // but making sure not to add the starting tile to possibleMoves[].
-  // at the end of the function possibleMoves[] is emptied.
-  if (possibleMoves == false) {
-    rookMapTiles();
-  }
-
-  // add a selector to each array item so that it will highlight when hovered (CSS rule)
-  for (i = 0; i < possibleMoves.length; i++) {
-    document.querySelector(possibleMoves[i]).classList.add("possibleMoves");
+// 3. After a move is made, or when a player de-selects their piece, resetBoard() is called.
+function resetBoard() {
+  for (k = 0; k < possibleMoves.length; k++) {
     document
-      .querySelector(possibleMoves[i])
-      .addEventListener("click", moveRook);
+      .querySelector(possibleMoves[k])
+      .removeEventListener("click", movePiece);
   }
+
+  // a. Removing '.possibleMoves' selector (CSS color change & hover).
+  possibleMoves.forEach((tile) => {
+    document.querySelector(tile).classList.remove("possibleMoves");
+  });
+
+  // b. Re-initialize board-wide event listener for the next move/selection.
+  moveEventListener();
+
+  // c. Emptying possibleMoves[] to be ready for the next move/selection.
+  possibleMoves = [];
+
+  // d. resetting all possible values in tilesArray to false to be ready for the next move/selection.
+  tilesArray.map((tile) => {
+    if (tile.possible === false) {
+      document
+        .querySelector(tile.selector)
+        .removeEventListener("click", resetBoard);
+    }
+  });
 }
 
-function moveRook() {
+// 3. Handles actually moving pieces around the board.
+function movePiece() {
+  // a. 'classString' and 'moveTileClass' are used to isolate the tile's selector.
   let classString;
   let moveTileCLass;
-  let pieceNameMover;
 
-  // the classList of the tile that the Rook is moving to
+  // b. 'pieceNameMover' and 'pieceMove' are used to transfer values from one tilesArray[] object to another.
+  let pieceNameMover;
+  let pieceMove;
+
   classString = "." + this.className;
   moveTileCLass = classString.split(" ");
 
-  // Checking to see if the tile you clicked on is a possibleMove[] or not.
+  // c. Checking to see if the tile you clicked on is a possibleMove[] or not.
+  // ============| STARTING TILE |============
   for (i = 0; i < possibleMoves.length; i++) {
     for (j = 0; j < moveTileCLass.length; j++) {
       if (moveTileCLass[j] === possibleMoves[i]) {
-        // ============| STARTING TILE |============
-        // 1. saving pieceName to a variable in order to transfer it to the new tile
-        // 2. chaning piece & pieceName value to false
-        // 3. removing the piece from the starting tile
-        // 4. update the innerHTML on the starting tile showing that the piece has moved.
         for (p = 0; p < tilesArray.length; p++) {
           if (tilesArray[p].selector === startingPoint.selector) {
-            console.log("starting point (click 2): ", startingPoint);
+            // c1. Saving' pieceName' in order to transfer it to the new tile
             pieceNameMover = tilesArray[p].pieceName;
-            console.log("Piece Name Mover: ", pieceNameMover);
+            pieceMove = tilesArray[p].piece;
+
+            // c2. Chaning 'piece' & 'pieceName' of starting tile value to false
             tilesArray[p].piece = false;
-            tilesArray[p].startingPiece = false;
             tilesArray[p].pieceName = false;
+
+            // c3. Update the starting tile showing that the piece has moved.
             document.querySelector(tilesArray[p].selector).innerHTML = "";
           }
         }
+
         // ============| NEW TILE |============
-        // 1. once the selector is found, move the rook to that tile
-        // 2. change the piece & pieceName value of the new tile to rook
-        // 3. update the innerHTML for the new tile to reflect rook
         tilesArray.map((tile) => {
           if (tile.selector == moveTileCLass[j]) {
-            tile.piece = rook;
+            // d1. Change 'piece' & 'pieceName' value of the new tile
+            tile.piece = pieceMove;
             tile.pieceName = pieceNameMover;
+            // d2. Update the new tile to reflect the piece
             document.querySelector(tile.selector).innerHTML = tile.pieceName;
-            initializeBoard();
           }
         });
 
-        function resetBoard() {
-          // Removing the event listener on the possibleMoves[] tiles
-          for (k = 0; k < possibleMoves.length; k++) {
-            document
-              .querySelector(possibleMoves[k])
-              .removeEventListener("click", rook);
-            document
-              .querySelector(possibleMoves[k])
-              .removeEventListener("click", moveRook);
-          }
-
-          // Removing the .possibleMoves HTML selector (CSS highlighting & hover)
-          possibleMoves.forEach((tile) => {
-            document.querySelector(tile).classList.remove("possibleMoves");
-          });
-
-          // Re-initialize board-wide event listener for the next move
-          moveEventListener();
-
-          // Emptying possibleMoves[] to be ready for the next move
-          possibleMoves = [];
-        }
+        // e. Reset event listeners
         resetBoard();
       }
     }
   }
 }
 
+// ==========================| Chess Piece Functions |==========================
+
+function bishop() {
+  console.log("Bishop Clicked");
+}
+function rook() {
+  // 1. Checks to see if the rook has already been clicked, adding selectors to an array.
+  if (possibleMoves == false) {
+    rookMapTiles();
+  }
+
+  // 2. After collecting all of the selectors...
+  // CSS styling: add a selector to each possibleMove[] tile
+  for (i = 0; i < possibleMoves.length; i++) {
+    document.querySelector(possibleMoves[i]).classList.add("possibleMoves");
+
+    // 3. Add event listeners to each possibleMove[] tile for selecting the tile to move to.
+    document
+      .querySelector(possibleMoves[i])
+      .addEventListener("click", movePiece);
+  }
+}
+
+// Handles finding all of the possible tiles that a rook can move to.
+// Rooks can either move along the starting row or starting columm (vertical/horizontal).
+// rookMapTiles() will not store the starting tile as a possible move.
 function rookMapTiles() {
   tilesArray.map((tileRow) => {
     if (
@@ -737,18 +752,17 @@ function rookMapTiles() {
 }
 
 // 1. [DONE] move piece when clicking a tile
-// 2. [DONE] removed castle from object, place in the tile's object that it lands on
+// 2. [DONE] removed rook from object, place in the tile's object that it lands on
 // 3. [DONE] remove .possibleMoves className from those tiles.
 // 4. {DONE] clear possibleMoves[] = [];
 // 5. undo feature === array of saved moves
 // 6. rename all queryselectors into variables
 /////// give variables and functions better names
-// 7. "Rook" printed on screen when loading up
-// 8. a way for someone to clik on a piece, see where it goes, and then deselect it, clicking on another piece.
-/////// a second nodelist of listeners placed on pieces so that you can select a different piece.
+// 7. [DONE] "Rook" printed on screen when loading up
+// 8. [DONE] a way for someone to clik on a piece, see where it goes, and then deselect it.
 // 9. Capital letters for all comments -- comment cleanup
-// 10. Call currentlyOnBoard() after each turn
-// 11. ERROR: for some reason clicking on the other pieces removes all event listeners.
-// 12. ERROR: after adding currentlyOnBoard() weird things are happening.
+// 10. (?) Call currentlyOnBoard() after each turn
 // 13. [DONE] /* changed to pieceName */ Do I need startingPiece as a key in the tile objects?
 // 14. [DONE] ERROR: after moving a rook, then clicking on the bishop more than once, the bishop begins logging moreRook() into the console.
+// 15. [DONE] Make sure resetBoard() is universal.
+// 16. Selecting different pieces.
