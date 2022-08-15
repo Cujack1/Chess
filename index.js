@@ -11,11 +11,11 @@ let previousMoves = [
       possible: false,
     },
     {
-      piece: bishop,
+      piece: false,
       row: 2,
       column: 1,
       selector: ".t9",
-      pieceName: "bishop",
+      pieceName: false,
       possible: false,
     },
     {
@@ -363,11 +363,11 @@ let previousMoves = [
       possible: false,
     },
     {
-      piece: false,
+      piece: bishop,
       row: 6,
       column: 6,
       selector: ".t46",
-      pieceName: false,
+      pieceName: "bishop",
       possible: false,
     },
     {
@@ -537,11 +537,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: bishop,
+    piece: false,
     row: 2,
     column: 1,
     selector: ".t9",
-    pieceName: "bishop",
+    pieceName: false,
     possible: false,
   },
   {
@@ -561,11 +561,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: bishop,
     row: 5,
     column: 1,
     selector: ".t33",
-    pieceName: false,
+    pieceName: "bishop",
     possible: false,
   },
   {
@@ -817,11 +817,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: bishop,
     row: 5,
     column: 5,
     selector: ".t37",
-    pieceName: false,
+    pieceName: "bishop",
     possible: false,
   },
   {
@@ -1142,18 +1142,16 @@ function listenForMove() {
 // 3. After a move is made, or when a player de-selects their piece, resetBoard() is called.
 function resetBoard() {
   for (k = 0; k < possibleMoves.length; k++) {
+    // a. Removing event listeners for movePiece();
     document
       .querySelector(possibleMoves[k])
       .removeEventListener("click", movePiece);
   }
 
-  // a. Removing '.possibleMoves' selector (CSS color change & hover).
+  // b. Removing '.possibleMoves' selector (CSS color change & hover).
   possibleMoves.forEach((tile) => {
     document.querySelector(tile).classList.remove("possibleMoves");
   });
-
-  // b. Re-initialize board-wide event listener for the next move/selection.
-  moveEventListener();
 
   // c. Emptying possibleMoves[] to be ready for the next move/selection.
   possibleMoves = [];
@@ -1166,6 +1164,9 @@ function resetBoard() {
         .removeEventListener("click", resetBoard);
     }
   });
+
+  // e. Re-initialize board-wide event listener for the next move/selection.
+  moveEventListener();
 }
 
 // 3. Handles actually moving pieces around the board.
@@ -1181,33 +1182,39 @@ function movePiece() {
   classString = "." + this.className;
   moveTileCLass = classString.split(" ");
 
-  // c. Checking to see if the tile you clicked on is a possibleMove[] or not.
-  // ============| STARTING TILE |============
+  // ====================| STARTING TILE |=====================
+
+  // c. Gathering starting tile information & deleting it
+  for (p = 0; p < tilesArray.length; p++) {
+    if (tilesArray[p].selector === startingPoint.selector) {
+      // c1. Saving' pieceName' in order to transfer it to the new tile
+
+      pieceNameMover = tilesArray[p].pieceName;
+      pieceMove = tilesArray[p].piece;
+
+      // c2. Chaning 'piece' & 'pieceName' of starting tile value to false
+      tilesArray[p].piece = false;
+      tilesArray[p].pieceName = false;
+
+      // c3. Update the starting tile showing that the piece has moved.
+      document.querySelector(tilesArray[p].selector).innerHTML = "";
+    }
+  }
+
+  // 4. Finding the tile you clicked in possibleMove[].
   for (i = 0; i < possibleMoves.length; i++) {
     for (j = 0; j < moveTileCLass.length; j++) {
       if (moveTileCLass[j] === possibleMoves[i]) {
-        for (p = 0; p < tilesArray.length; p++) {
-          if (tilesArray[p].selector === startingPoint.selector) {
-            // c1. Saving' pieceName' in order to transfer it to the new tile
-            pieceNameMover = tilesArray[p].pieceName;
-            pieceMove = tilesArray[p].piece;
+        // ====================| NEW TILE |=====================
 
-            // c2. Chaning 'piece' & 'pieceName' of starting tile value to false
-            tilesArray[p].piece = false;
-            tilesArray[p].pieceName = false;
-
-            // c3. Update the starting tile showing that the piece has moved.
-            document.querySelector(tilesArray[p].selector).innerHTML = "";
-          }
-        }
-
-        // ============| NEW TILE |============
         tilesArray.map((tile) => {
           if (tile.selector == moveTileCLass[j]) {
-            // d1. Change 'piece' & 'pieceName' value of the new tile
+            // a. Change 'piece' & 'pieceName' value of the new tile
+
             tile.piece = pieceMove;
             tile.pieceName = pieceNameMover;
-            // d2. Update the new tile to reflect the piece
+
+            // b. Update the new tile to reflect the piece
             document.querySelector(tile.selector).innerHTML = tile.pieceName;
           }
         });
@@ -1222,13 +1229,62 @@ function movePiece() {
 // ==========================| Chess Piece Functions |==========================
 
 function bishop() {
-  console.log("Bishop Clicked");
-  
+  let x = startingPoint.row;
+  let y = startingPoint.column;
+  let differencePlus;
+  let differenceMinus;
+  let minusMove;
+  let plusMove;
+  let bishopMovesArray = [];
+
+  for (row = 1; row <= 8; row++) {
+    if (row != x) {
+      differenceMinus = y - (x - row);
+      differencePlus = y + (x - row);
+      minusMove = { row: row, column: differenceMinus };
+      plusMove = { row: row, column: differencePlus };
+      if (differenceMinus >= 1 && differenceMinus <= 8) {
+        bishopMovesArray.push(minusMove);
+      }
+      if (differencePlus >= 1 && differencePlus <= 8) {
+        bishopMovesArray.push(plusMove);
+      }
+    }
+  }
+
+  tilesArray.map((tile) => {
+    bishopMovesArray.map((move) => {
+      if (tile.row === move.row && tile.column === move.column) {
+        possibleMoves.push(tile.selector);
+        document.querySelector(tile.selector).classList.add("possibleMoves");
+        document
+          .querySelector(tile.selector)
+          .addEventListener("click", movePiece);
+      }
+    });
+  });
 }
 function rook() {
   // 1. Checks to see if the rook has already been clicked, adding selectors to an array.
   if (possibleMoves == false) {
-    rookMapTiles();
+    tilesArray.map((tileRow) => {
+      if (
+        tileRow.row == startingPoint.row &&
+        tileRow.selector != startingPoint.selector
+      ) {
+        possibleMoves.push(tileRow.selector);
+        tileRow.possible = true;
+      }
+    });
+    tilesArray.map((tileColumn) => {
+      if (
+        tileColumn.column == startingPoint.column &&
+        tileColumn.selector != startingPoint.selector
+      ) {
+        possibleMoves.push(tileColumn.selector);
+        tileColumn.possible = true;
+      }
+    });
   }
 
   // 2. After collecting all of the selectors...
@@ -1243,29 +1299,11 @@ function rook() {
   }
 }
 
+
+
 // Handles finding all of the possible tiles that a rook can move to.
 // Rooks can either move along the starting row or starting columm (vertical/horizontal).
 // rookMapTiles() will not store the starting tile as a possible move.
-function rookMapTiles() {
-  tilesArray.map((tileRow) => {
-    if (
-      tileRow.row == startingPoint.row &&
-      tileRow.selector != startingPoint.selector
-    ) {
-      possibleMoves.push(tileRow.selector);
-      tileRow.possible = true;
-    }
-  });
-  tilesArray.map((tileColumn) => {
-    if (
-      tileColumn.column == startingPoint.column &&
-      tileColumn.selector != startingPoint.selector
-    ) {
-      possibleMoves.push(tileColumn.selector);
-      tileColumn.possible = true;
-    }
-  });
-}
 
 // 1. [DONE] move piece when clicking a tile
 // 2. [DONE] removed rook from object, place in the tile's object that it lands on
