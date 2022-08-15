@@ -1,521 +1,5 @@
 let startingPoint = {};
 let possibleMoves = [];
-let previousMoves = [
-  [
-    {
-      piece: rook,
-      row: 1,
-      column: 1,
-      selector: ".t1",
-      pieceName: "rookBlackC1",
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 1,
-      selector: ".t9",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 1,
-      selector: ".t17",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 1,
-      selector: ".t25",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 1,
-      selector: ".t33",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 1,
-      selector: ".t41",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 1,
-      selector: ".t49",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: rook,
-      row: 8,
-      column: 1,
-      selector: ".t57",
-      pieceName: "whiteRookC1",
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 1,
-      column: 2,
-      selector: ".t2",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 2,
-      selector: ".t10",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 2,
-      selector: ".t18",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 2,
-      selector: ".t26",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 2,
-      selector: ".t34",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 2,
-      selector: ".t42",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 2,
-      selector: ".t50",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 8,
-      column: 2,
-      selector: ".t58",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 1,
-      column: 3,
-      selector: ".t3",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 3,
-      selector: ".t11",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 3,
-      selector: ".t19",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 3,
-      selector: ".t27",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 3,
-      selector: ".t35",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 3,
-      selector: ".t43",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 3,
-      selector: ".t51",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 8,
-      column: 3,
-      selector: ".t59",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 1,
-      column: 4,
-      selector: ".t4",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 4,
-      selector: ".t12",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 4,
-      selector: ".t20",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 4,
-      selector: ".t28",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 4,
-      selector: ".t36",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 4,
-      selector: ".t44",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 4,
-      selector: ".t52",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 8,
-      column: 4,
-      selector: ".t60",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 1,
-      column: 5,
-      selector: ".t5",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 5,
-      selector: ".t13",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 5,
-      selector: ".t21",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 5,
-      selector: ".t29",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 5,
-      selector: ".t37",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 5,
-      selector: ".t45",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 5,
-      selector: ".t53",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 8,
-      column: 5,
-      selector: ".t61",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 1,
-      column: 6,
-      selector: ".t6",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 6,
-      selector: ".t14",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 6,
-      selector: ".t22",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 6,
-      selector: ".t30",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 6,
-      selector: ".t38",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: bishop,
-      row: 6,
-      column: 6,
-      selector: ".t46",
-      pieceName: "bishop",
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 6,
-      selector: ".t54",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 8,
-      column: 6,
-      selector: ".t62",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 1,
-      column: 7,
-      selector: ".t7",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 7,
-      selector: ".t15",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 7,
-      selector: ".t23",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 7,
-      selector: ".t31",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 7,
-      selector: ".t39",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 7,
-      selector: ".t47",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 7,
-      selector: ".t55",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 8,
-      column: 7,
-      selector: ".t63",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: rook,
-      row: 1,
-      column: 8,
-      selector: ".t8",
-      pieceName: "rookBlackC8",
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 2,
-      column: 8,
-      selector: ".t16",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 3,
-      column: 8,
-      selector: ".t24",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 4,
-      column: 8,
-      selector: ".t32",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 5,
-      column: 8,
-      selector: ".t40",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 6,
-      column: 8,
-      selector: ".t48",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: false,
-      row: 7,
-      column: 8,
-      selector: ".t56",
-      pieceName: false,
-      possible: false,
-    },
-    {
-      piece: rook,
-      row: 8,
-      column: 8,
-      selector: ".t64",
-      pieceName: "whiteRookC8",
-      possible: false,
-    },
-  ],
-];
 let tileListener;
 
 // Node list for event listeners on all pieces currently on the board
@@ -533,7 +17,7 @@ const tilesArray = [
     row: 1,
     column: 1,
     selector: ".t1",
-    pieceName: "rookBlackC1",
+    pieceName: "rook",
     possible: false,
   },
   {
@@ -561,11 +45,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: bishop,
+    piece: false,
     row: 5,
     column: 1,
     selector: ".t33",
-    pieceName: "bishop",
+    pieceName: false,
     possible: false,
   },
   {
@@ -589,15 +73,15 @@ const tilesArray = [
     row: 8,
     column: 1,
     selector: ".t57",
-    pieceName: "whiteRookC1",
+    pieceName: "rook",
     possible: false,
   },
   {
-    piece: false,
+    piece: knight,
     row: 1,
     column: 2,
     selector: ".t2",
-    pieceName: false,
+    pieceName: "knight",
     possible: false,
   },
   {
@@ -649,19 +133,19 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: knight,
     row: 8,
     column: 2,
     selector: ".t58",
-    pieceName: false,
+    pieceName: "knight",
     possible: false,
   },
   {
-    piece: false,
+    piece: bishop,
     row: 1,
     column: 3,
     selector: ".t3",
-    pieceName: false,
+    pieceName: "bishop",
     possible: false,
   },
   {
@@ -713,11 +197,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: bishop,
     row: 8,
     column: 3,
     selector: ".t59",
-    pieceName: false,
+    pieceName: "bishop",
     possible: false,
   },
   {
@@ -817,11 +301,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: bishop,
+    piece: false,
     row: 5,
     column: 5,
     selector: ".t37",
-    pieceName: "bishop",
+    pieceName: false,
     possible: false,
   },
   {
@@ -849,11 +333,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: bishop,
     row: 1,
     column: 6,
     selector: ".t6",
-    pieceName: false,
+    pieceName: "bishop",
     possible: false,
   },
   {
@@ -905,19 +389,19 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: bishop,
     row: 8,
     column: 6,
     selector: ".t62",
-    pieceName: false,
+    pieceName: "bishop",
     possible: false,
   },
   {
-    piece: false,
+    piece: knight,
     row: 1,
     column: 7,
     selector: ".t7",
-    pieceName: false,
+    pieceName: "knight",
     possible: false,
   },
   {
@@ -969,11 +453,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: knight,
     row: 8,
     column: 7,
     selector: ".t63",
-    pieceName: false,
+    pieceName: "knight",
     possible: false,
   },
   {
@@ -981,7 +465,7 @@ const tilesArray = [
     row: 1,
     column: 8,
     selector: ".t8",
-    pieceName: "rookBlackC8",
+    pieceName: "rook",
     possible: false,
   },
   {
@@ -1037,7 +521,7 @@ const tilesArray = [
     row: 8,
     column: 8,
     selector: ".t64",
-    pieceName: "whiteRookC8",
+    pieceName: "rook",
     possible: false,
   },
 ];
@@ -1299,11 +783,47 @@ function rook() {
   }
 }
 
+function knight() {
+  let a = startingPoint.row;
+  let b = startingPoint.column;
+  let knightRows = [a - 2, a - 1, a + 1, a + 2];
+  let knightMovesArray = [];
 
+  // The most vertical moves
+  outerMoveMinus1 = { row: knightRows[0], column: b - 1 };
+  outerMoveMinus2 = { row: knightRows[3], column: b - 1 };
+  outerMovePlus1 = { row: knightRows[0], column: b + 1 };
+  outerMovePlus2 = { row: knightRows[3], column: b + 1 };
 
-// Handles finding all of the possible tiles that a rook can move to.
-// Rooks can either move along the starting row or starting columm (vertical/horizontal).
-// rookMapTiles() will not store the starting tile as a possible move.
+  // The most horizontal moves
+  innerMoveMinus1 = { row: knightRows[1], column: b - 2 };
+  innerMoveMinus2 = { row: knightRows[2], column: b - 2 };
+  innerMovePlus1 = { row: knightRows[1], column: b + 2 };
+  innerMovePlus2 = { row: knightRows[2], column: b + 2 };
+
+  knightMovesArray.push(
+    outerMoveMinus1,
+    outerMoveMinus2,
+    outerMovePlus1,
+    outerMovePlus2,
+    innerMoveMinus1,
+    innerMoveMinus2,
+    innerMovePlus1,
+    innerMovePlus2
+  );
+
+  tilesArray.map((tile) => {
+    knightMovesArray.map((move) => {
+      if (tile.row === move.row && tile.column === move.column) {
+        possibleMoves.push(tile.selector);
+        document.querySelector(tile.selector).classList.add("possibleMoves");
+        document
+          .querySelector(tile.selector)
+          .addEventListener("click", movePiece);
+      }
+    });
+  });
+}
 
 // 1. [DONE] move piece when clicking a tile
 // 2. [DONE] removed rook from object, place in the tile's object that it lands on
@@ -1320,3 +840,4 @@ function rook() {
 // 14. [DONE] ERROR: after moving a rook, then clicking on the bishop more than once, the bishop begins logging moreRook() into the console.
 // 15. [DONE] Make sure resetBoard() is universal.
 // 16. Selecting different pieces.
+// 17. movePiece() switch for loops to maps (?).
