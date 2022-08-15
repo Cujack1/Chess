@@ -1,3 +1,8 @@
+body {
+    font-size: 1.5rem;
+    color: white;
+}
+
 .wrapper {
     width: 900px;
     height: 900px;
@@ -11,12 +16,17 @@
     height: 100px;
     margin: -5px 5px;
     padding: 0;
-    background: gold;
+    background: rgb(163, 154, 86);
+}
+
+.black {
+    background: rgb(42, 39, 16);
 }
 
 /* hover effect on possibleMoves */
 .possibleMoves {
-    background: rgb(185, 165, 50);
+    box-shadow: 5px 5px 10px rgb(19, 96, 0);
+    background-color: rgba(23, 109, 1, 0.441);
 }
 
 .possibleMoves:hover {

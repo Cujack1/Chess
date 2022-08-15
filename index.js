@@ -205,11 +205,11 @@ const tilesArray = [
     possible: false,
   },
   {
-    piece: false,
+    piece: queen,
     row: 1,
     column: 4,
     selector: ".t4",
-    pieceName: false,
+    pieceName: "queen",
     possible: false,
   },
   {
@@ -526,42 +526,6 @@ const tilesArray = [
   },
 ];
 
-// Event listener for all pieces currently on the board
-// currentlyOnBoard();
-
-// function currentlyOnBoard() {
-//   // Reset the list each turn - called after each player ends their turn.
-//   whitePiecesOnBoard = [];
-//   blackPiecesOnBoard = [];
-
-//   findPieces();
-
-//   function findPieces() {
-//     tilesArray.forEach((piece) => {
-//       if (piece.piece === whiteRookC1 || piece.piece === whiteRookC8) {
-//         whitePiecesOnBoard.push(piece);
-//       }
-
-//       if (piece.piece === rookBlackC1 || piece.piece === rookBlackC8) {
-//         blackPiecesOnBoard.push(piece);
-//       }
-//     });
-//     listenForPieces();
-//   }
-
-//   function listenForPieces() {
-//     whitePiecesOnBoard.forEach((piece) => {
-//       document
-//         .querySelector(piece.selector)
-//         .addEventListener("click", piece.piece);
-//     });
-//   }
-// }
-// console.log("White node list", whitePiecesOnBoard);
-// console.log("Black node list", blackPiecesOnBoard);
-
-// Initialize the Board, populate the piece names
-
 // ==========================| Getting thigns started |==========================
 initializeBoard();
 function initializeBoard() {
@@ -786,32 +750,39 @@ function rook() {
 function knight() {
   let a = startingPoint.row;
   let b = startingPoint.column;
+
+  // columnMinus{} & columnPlus{} represent that on possible rows knights can land...
+  // // on columns either one or two greater than the starting column.
+  let columnMinus;
+  let columnPlus;
+
+  // knightRows[] represents that the possible rows from any given starting position...
+  // // include 2 greater and 2 less than the starting row, but not the starting row itself.
+  // knightRows[] can never have more than 4 rows.
+  // Any tiles that compute to greater than 8 or less than 1 do not have any counterparts...
+  // //  tilesArra, and therefore do not receive the '.possibleMoves' class.
   let knightRows = [a - 2, a - 1, a + 1, a + 2];
   let knightMovesArray = [];
 
-  // The most vertical moves
-  outerMoveMinus1 = { row: knightRows[0], column: b - 1 };
-  outerMoveMinus2 = { row: knightRows[3], column: b - 1 };
-  outerMovePlus1 = { row: knightRows[0], column: b + 1 };
-  outerMovePlus2 = { row: knightRows[3], column: b + 1 };
+  // Rows @ index [0] & [3] have the same math.
+  for (k = 0; k < knightRows.length; k++) {
+    if (k === 0 || k === 3) {
+      columnMinus = { row: knightRows[k], column: b - 1 };
+      columnPlus = { row: knightRows[k], column: b + 1 };
+      knightMovesArray.push(columnMinus, columnPlus);
+    }
 
-  // The most horizontal moves
-  innerMoveMinus1 = { row: knightRows[1], column: b - 2 };
-  innerMoveMinus2 = { row: knightRows[2], column: b - 2 };
-  innerMovePlus1 = { row: knightRows[1], column: b + 2 };
-  innerMovePlus2 = { row: knightRows[2], column: b + 2 };
+    // Rows @ index [1] & [2] have the same math.
+    if (k === 1 || k === 2) {
+      columnMinus = { row: knightRows[k], column: b - 2 };
+      columnPlus = { row: knightRows[k], column: b + 2 };
+      knightMovesArray.push(columnMinus, columnPlus);
+    }
+  }
 
-  knightMovesArray.push(
-    outerMoveMinus1,
-    outerMoveMinus2,
-    outerMovePlus1,
-    outerMovePlus2,
-    innerMoveMinus1,
-    innerMoveMinus2,
-    innerMovePlus1,
-    innerMovePlus2
-  );
-
+  // Add all of the computed moves into possibleMoves[] by comparing the...
+  // // row & column values to tilesArray[], pushing to possibleMoves[],
+  // // then calling movePiece().
   tilesArray.map((tile) => {
     knightMovesArray.map((move) => {
       if (tile.row === move.row && tile.column === move.column) {
@@ -823,6 +794,73 @@ function knight() {
       }
     });
   });
+}
+
+function queen() {
+  // Variables for diagonal movement.
+  let x = startingPoint.row;
+  let y = startingPoint.column;
+  let differencePlus;
+  let differenceMinus;
+  let minusMove;
+  let plusMove;
+  let bishopMovesArray = [];
+
+  // =============| Finding all Possible Moves |=============
+  // Diagonal movement.
+  for (row = 1; row <= 8; row++) {
+    if (row != x) {
+      differenceMinus = y - (x - row);
+      differencePlus = y + (x - row);
+      minusMove = { row: row, column: differenceMinus };
+      plusMove = { row: row, column: differencePlus };
+      if (differenceMinus >= 1 && differenceMinus <= 8) {
+        bishopMovesArray.push(minusMove);
+      }
+      if (differencePlus >= 1 && differencePlus <= 8) {
+        bishopMovesArray.push(plusMove);
+      }
+    }
+  }
+
+  // Adding diagonal movements to possibleMoves[];
+  tilesArray.map((tile) => {
+    bishopMovesArray.map((move) => {
+      if (tile.row === move.row && tile.column === move.column) {
+        possibleMoves.push(tile.selector);
+      }
+    });
+  });
+
+  // Vertical & Horizontal Movement & adding to possibleMoves[];
+  tilesArray.map((tileRow) => {
+    if (
+      tileRow.row == startingPoint.row &&
+      tileRow.selector != startingPoint.selector
+    ) {
+      possibleMoves.push(tileRow.selector);
+      tileRow.possible = true;
+    }
+  });
+  tilesArray.map((tileColumn) => {
+    if (
+      tileColumn.column == startingPoint.column &&
+      tileColumn.selector != startingPoint.selector
+    ) {
+      possibleMoves.push(tileColumn.selector);
+      tileColumn.possible = true;
+    }
+  });
+
+  // Giving tiles the '.possibleMoves' class.
+  for (i = 0; i < possibleMoves.length; i++) {
+    document.querySelector(possibleMoves[i]).classList.add("possibleMoves");
+
+    // Add event listeners to each possibleMove[] tile for selecting the tile to move to.
+    document
+      .querySelector(possibleMoves[i])
+      .addEventListener("click", movePiece);
+  }
 }
 
 // 1. [DONE] move piece when clicking a tile
@@ -841,3 +879,5 @@ function knight() {
 // 15. [DONE] Make sure resetBoard() is universal.
 // 16. Selecting different pieces.
 // 17. movePiece() switch for loops to maps (?).
+// 18. Consistent terms between all piece functions
+// 19. QUEEN ON HER COLOR.
