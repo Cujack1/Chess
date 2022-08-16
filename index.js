@@ -19,14 +19,16 @@ const tilesArray = [
     selector: ".t1",
     pieceName: "rook",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 1,
     selector: ".t9",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -35,6 +37,7 @@ const tilesArray = [
     selector: ".t17",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -43,6 +46,7 @@ const tilesArray = [
     selector: ".t25",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -51,6 +55,7 @@ const tilesArray = [
     selector: ".t33",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -59,14 +64,16 @@ const tilesArray = [
     selector: ".t41",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 1,
     selector: ".t49",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: rook,
@@ -75,6 +82,7 @@ const tilesArray = [
     selector: ".t57",
     pieceName: "rook",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: knight,
@@ -83,14 +91,16 @@ const tilesArray = [
     selector: ".t2",
     pieceName: "knight",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 2,
     selector: ".t10",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -99,6 +109,7 @@ const tilesArray = [
     selector: ".t18",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -107,6 +118,7 @@ const tilesArray = [
     selector: ".t26",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -115,6 +127,7 @@ const tilesArray = [
     selector: ".t34",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -123,14 +136,16 @@ const tilesArray = [
     selector: ".t42",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 2,
     selector: ".t50",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: knight,
@@ -139,6 +154,7 @@ const tilesArray = [
     selector: ".t58",
     pieceName: "knight",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: bishop,
@@ -147,14 +163,16 @@ const tilesArray = [
     selector: ".t3",
     pieceName: "bishop",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 3,
     selector: ".t11",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -163,6 +181,7 @@ const tilesArray = [
     selector: ".t19",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -171,6 +190,7 @@ const tilesArray = [
     selector: ".t27",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -179,6 +199,7 @@ const tilesArray = [
     selector: ".t35",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -187,14 +208,16 @@ const tilesArray = [
     selector: ".t43",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 3,
     selector: ".t51",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: bishop,
@@ -203,6 +226,7 @@ const tilesArray = [
     selector: ".t59",
     pieceName: "bishop",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: queen,
@@ -211,14 +235,16 @@ const tilesArray = [
     selector: ".t4",
     pieceName: "queen",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 4,
     selector: ".t12",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -227,14 +253,16 @@ const tilesArray = [
     selector: ".t20",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: king,
     row: 4,
     column: 4,
     selector: ".t28",
-    pieceName: false,
+    pieceName: "king",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -243,6 +271,7 @@ const tilesArray = [
     selector: ".t36",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -251,38 +280,43 @@ const tilesArray = [
     selector: ".t44",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 4,
     selector: ".t52",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
-    piece: false,
+    piece: queen,
     row: 8,
     column: 4,
     selector: ".t60",
-    pieceName: false,
+    pieceName: "Queen",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: king,
     row: 1,
     column: 5,
     selector: ".t5",
-    pieceName: false,
+    pieceName: "king",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 5,
     selector: ".t13",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -291,6 +325,7 @@ const tilesArray = [
     selector: ".t21",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -299,6 +334,7 @@ const tilesArray = [
     selector: ".t29",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -307,6 +343,7 @@ const tilesArray = [
     selector: ".t37",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -315,22 +352,25 @@ const tilesArray = [
     selector: ".t45",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 5,
     selector: ".t53",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
-    piece: false,
+    piece: king,
     row: 8,
     column: 5,
     selector: ".t61",
-    pieceName: false,
+    pieceName: "king",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: bishop,
@@ -339,14 +379,16 @@ const tilesArray = [
     selector: ".t6",
     pieceName: "bishop",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 6,
     selector: ".t14",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -355,6 +397,7 @@ const tilesArray = [
     selector: ".t22",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -363,6 +406,7 @@ const tilesArray = [
     selector: ".t30",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -371,6 +415,7 @@ const tilesArray = [
     selector: ".t38",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -379,14 +424,16 @@ const tilesArray = [
     selector: ".t46",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 6,
     selector: ".t54",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: bishop,
@@ -395,6 +442,7 @@ const tilesArray = [
     selector: ".t62",
     pieceName: "bishop",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: knight,
@@ -403,14 +451,16 @@ const tilesArray = [
     selector: ".t7",
     pieceName: "knight",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 7,
     selector: ".t15",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -419,6 +469,7 @@ const tilesArray = [
     selector: ".t23",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -427,6 +478,7 @@ const tilesArray = [
     selector: ".t31",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -435,6 +487,7 @@ const tilesArray = [
     selector: ".t39",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -443,14 +496,16 @@ const tilesArray = [
     selector: ".t47",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 7,
     selector: ".t55",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: knight,
@@ -459,6 +514,7 @@ const tilesArray = [
     selector: ".t63",
     pieceName: "knight",
     possible: false,
+    plusTwo: false,
   },
   {
     piece: rook,
@@ -467,14 +523,16 @@ const tilesArray = [
     selector: ".t8",
     pieceName: "rook",
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 2,
     column: 8,
     selector: ".t16",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: false,
@@ -483,6 +541,7 @@ const tilesArray = [
     selector: ".t24",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -491,6 +550,7 @@ const tilesArray = [
     selector: ".t32",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -499,6 +559,7 @@ const tilesArray = [
     selector: ".t40",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
     piece: false,
@@ -507,14 +568,16 @@ const tilesArray = [
     selector: ".t48",
     pieceName: false,
     possible: false,
+    plusTwo: false,
   },
   {
-    piece: false,
+    piece: pawn,
     row: 7,
     column: 8,
     selector: ".t56",
-    pieceName: false,
+    pieceName: "pawn",
     possible: false,
+    plusTwo: true,
   },
   {
     piece: rook,
@@ -523,6 +586,7 @@ const tilesArray = [
     selector: ".t64",
     pieceName: "rook",
     possible: false,
+    plusTwo: false,
   },
 ];
 
@@ -677,29 +741,35 @@ function movePiece() {
 // ==========================| Chess Piece Functions |==========================
 
 function bishop() {
+  // Variables for diagonal movement.
   let x = startingPoint.row;
   let y = startingPoint.column;
-  let differencePlus;
-  let differenceMinus;
+  let columnPlus;
+  let columnMinus;
   let minusMove;
   let plusMove;
   let bishopMovesArray = [];
 
+  // The bishop can move one column greater or less than...
+  // // its starting column for each row beyond its starting row.
   for (row = 1; row <= 8; row++) {
     if (row != x) {
-      differenceMinus = y - (x - row);
-      differencePlus = y + (x - row);
-      minusMove = { row: row, column: differenceMinus };
-      plusMove = { row: row, column: differencePlus };
-      if (differenceMinus >= 1 && differenceMinus <= 8) {
+      columnMinus = y - (x - row);
+      columnPlus = y + (x - row);
+      minusMove = { row: row, column: columnMinus };
+      plusMove = { row: row, column: columnPlus };
+      if (columnMinus >= 1 && columnMinus <= 8) {
         bishopMovesArray.push(minusMove);
       }
-      if (differencePlus >= 1 && differencePlus <= 8) {
+      if (columnPlus >= 1 && columnPlus <= 8) {
         bishopMovesArray.push(plusMove);
       }
     }
   }
 
+  // Finding the selectors for its moves, adding them to possibleMoves[],
+  // // adding the '.possibleMoves' selector,
+  // // and an event listener that calls movePiece().
   tilesArray.map((tile) => {
     bishopMovesArray.map((move) => {
       if (tile.row === move.row && tile.column === move.column) {
@@ -748,8 +818,8 @@ function rook() {
 }
 
 function knight() {
-  let a = startingPoint.row;
-  let b = startingPoint.column;
+  let x = startingPoint.row;
+  let y = startingPoint.column;
 
   // columnMinus{} & columnPlus{} represent that on possible rows knights can land...
   // // on columns either one or two greater than the starting column.
@@ -761,21 +831,21 @@ function knight() {
   // knightRows[] can never have more than 4 rows.
   // Any tiles that compute to greater than 8 or less than 1 do not have any counterparts...
   // //  tilesArra, and therefore do not receive the '.possibleMoves' class.
-  let knightRows = [a - 2, a - 1, a + 1, a + 2];
+  let knightRows = [x - 2, x - 1, x + 1, x + 2];
   let knightMovesArray = [];
 
   // Rows @ index [0] & [3] have the same math.
   for (k = 0; k < knightRows.length; k++) {
     if (k === 0 || k === 3) {
-      columnMinus = { row: knightRows[k], column: b - 1 };
-      columnPlus = { row: knightRows[k], column: b + 1 };
+      columnMinus = { row: knightRows[k], column: y - 1 };
+      columnPlus = { row: knightRows[k], column: y + 1 };
       knightMovesArray.push(columnMinus, columnPlus);
     }
 
     // Rows @ index [1] & [2] have the same math.
     if (k === 1 || k === 2) {
-      columnMinus = { row: knightRows[k], column: b - 2 };
-      columnPlus = { row: knightRows[k], column: b + 2 };
+      columnMinus = { row: knightRows[k], column: y - 2 };
+      columnPlus = { row: knightRows[k], column: y + 2 };
       knightMovesArray.push(columnMinus, columnPlus);
     }
   }
@@ -800,32 +870,31 @@ function queen() {
   // Variables for diagonal movement.
   let x = startingPoint.row;
   let y = startingPoint.column;
-  let differencePlus;
-  let differenceMinus;
+  let columnPlus;
+  let columnMinus;
   let minusMove;
   let plusMove;
-  let bishopMovesArray = [];
+  let queenMovesArray = [];
 
-  // =============| Finding all Possible Moves |=============
   // Diagonal movement.
   for (row = 1; row <= 8; row++) {
     if (row != x) {
-      differenceMinus = y - (x - row);
-      differencePlus = y + (x - row);
-      minusMove = { row: row, column: differenceMinus };
-      plusMove = { row: row, column: differencePlus };
-      if (differenceMinus >= 1 && differenceMinus <= 8) {
-        bishopMovesArray.push(minusMove);
+      columnMinus = y - (x - row);
+      columnPlus = y + (x - row);
+      minusMove = { row: row, column: columnMinus };
+      plusMove = { row: row, column: columnPlus };
+      if (columnMinus >= 1 && columnMinus <= 8) {
+        queenMovesArray.push(minusMove);
       }
-      if (differencePlus >= 1 && differencePlus <= 8) {
-        bishopMovesArray.push(plusMove);
+      if (columnPlus >= 1 && columnPlus <= 8) {
+        queenMovesArray.push(plusMove);
       }
     }
   }
 
   // Adding diagonal movements to possibleMoves[];
   tilesArray.map((tile) => {
-    bishopMovesArray.map((move) => {
+    queenMovesArray.map((move) => {
       if (tile.row === move.row && tile.column === move.column) {
         possibleMoves.push(tile.selector);
       }
@@ -852,7 +921,7 @@ function queen() {
     }
   });
 
-  // Giving tiles the '.possibleMoves' class.
+  // Giving tiles the '.possibleMoves' selector.
   for (i = 0; i < possibleMoves.length; i++) {
     document.querySelector(possibleMoves[i]).classList.add("possibleMoves");
 
@@ -861,6 +930,85 @@ function queen() {
       .querySelector(possibleMoves[i])
       .addEventListener("click", movePiece);
   }
+}
+
+function king() {
+  // Variables for king's Moves.
+  let x = startingPoint.row;
+  let y = startingPoint.column;
+  let minusMove;
+  let neutralMove;
+  let plusMove;
+
+  // The king can move in its starting row, as well as...
+  // // rows 1 greater or less than its starting row.
+  let kingRows = [x - 1, x, x + 1];
+  let kingMovesArray = [];
+
+  // Identify all possible moves. The startingPoint{} is not a possible move.
+  for (k = 0; k < kingRows.length; k++) {
+    minusMove = { row: kingRows[k], column: y - 1 };
+    if (kingRows[k] != x) {
+      neutralMove = { row: kingRows[k], column: y };
+      kingMovesArray.push(neutralMove);
+    }
+    plusMove = { row: kingRows[k], column: y + 1 };
+    kingMovesArray.push(minusMove, plusMove);
+  }
+
+  // Push all possible moves' tile selectors into possibleMoves[]...
+  // // by finding them in tilesArray[].
+  tilesArray.map((tile) => {
+    kingMovesArray.map((move) => {
+      if (tile.row === move.row && tile.column === move.column) {
+        possibleMoves.push(tile.selector);
+      }
+    });
+  });
+
+  // Assign all possibleMoves[] with '.possibleMoves' selector.
+  // Add event listener for movePiece();
+  possibleMoves.forEach((move) => {
+    document.querySelector(move).classList.add("possibleMoves");
+    document.querySelector(move).addEventListener("click", movePiece);
+  });
+}
+
+function blackPawn() {
+  console.log("pawn is called");
+
+  let x = startingPoint.row;
+  let y = startingPoint.column;
+  let checkColumnValues = [y - 1, y, y + 1];
+  let checkColumns = [];
+  let attack;
+
+  let pawnRows = [];
+  let move = [];
+
+  console.log(this.plusTwo);
+  console.log(this.row, this.column);
+
+  if (this.plusTwo === true) {
+    pawnRows = [x + 1, x + 2];
+  }
+  if (this.plusTwo === false) {
+    pawnRows = [x + 1];
+  }
+
+  console.log("pawnrows", pawnRows);
+
+  // tilesArray.map((pieces) => {
+  //   checkColumnValues.map((check) => {
+  //     if (pieces.row === pawnRows.row && pieces.column === y) {
+  //       checkColumns.push(pieces);
+  //     }
+  //   });
+  // });
+  console.log("checkcolumns: ", checkColumns);
+  // for (p = 0; p < pawnRows.length; p++) {
+  //   if (pawnRows[p].column + 1)
+  // }
 }
 
 // 1. [DONE] move piece when clicking a tile
@@ -872,7 +1020,7 @@ function queen() {
 /////// give variables and functions better names
 // 7. [DONE] "Rook" printed on screen when loading up
 // 8. [DONE] a way for someone to clik on a piece, see where it goes, and then deselect it.
-// 9. Capital letters for all comments -- comment cleanup
+// 9. Capital letters for all comments -- comment cleanup -- selectors, not class.
 // 10. (?) Call currentlyOnBoard() after each turn
 // 13. [DONE] /* changed to pieceName */ Do I need startingPiece as a key in the tile objects?
 // 14. [DONE] ERROR: after moving a rook, then clicking on the bishop more than once, the bishop begins logging moreRook() into the console.
@@ -881,3 +1029,6 @@ function queen() {
 // 17. movePiece() switch for loops to maps (?).
 // 18. Consistent terms between all piece functions
 // 19. QUEEN ON HER COLOR.
+// 20. Calling Check & Checkmate.
+// 21. Can all piece functions be as simple as the King's? ===============================================================================
+// 22. Black pawns and White pawns need seperate functions.
